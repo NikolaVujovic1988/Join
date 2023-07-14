@@ -1,0 +1,63 @@
+<div class="summary-content">
+    <div class="spanMainpage d-none">Kanban Project Management Tool</div>
+    <div class="summary-headline-container">
+        <h2>Summary</h2>
+        <div class="vertical-line-summary"></div>
+        <span>Everything in a nutshell!</span>
+    </div>
+    <div class="d-flex">
+        <div class="flex-column">
+            <div class="d-flex task-count-boxes-top-row">
+                <div class="task-count-box" onclick="changeSite(BOARD_ID)">
+                    <span id="allTasksCount"></span>
+                    <div class="task-count-box-description">
+                        Tasks in<br>Board
+                    </div>
+                </div>
+                <div class="task-count-box" onclick="changeSite(BOARD_ID)">
+                    <span id="tasksInProgressCount"></span>
+                    <div class="task-count-box-description">
+                        Tasks in<br>Progress
+                    </div>
+                </div>
+                <div class="task-count-box" onclick="changeSite(BOARD_ID)">
+                    <span id="tasksAwaitingFeedbackCount"></span>
+                    <div class="task-count-box-description">
+                        Awaiting<br>Feedback
+                    </div>
+                </div>
+            </div>
+            <div class="urgent-tasks-box" onclick="changeSite(BOARD_ID)">
+                <div class="d-flex a-i-center">
+                    <img src="../img/Group 7.png">
+                    <div class="flex-column">
+                        <span id="urgentTasksCount" class="urgent-tasks-count"></span>Urgent
+                    </div>
+                </div>
+                <div class="urgent-tasks-box-parting-line"></div>
+                <div class="deadline">
+                    <b id="date"></b>
+                    <span>Upcoming Deadline</span>
+                </div>
+            </div>
+            <div class="task-count-boxes-bottom-row">
+                <div class="tasks-to-do-box" onclick="changeSite(BOARD_ID)">
+                    <img src="../img/to-do.png">
+                    <div class="summary-todo-tasks-box flex-column">
+                        <span id="tasksToDoCount"><b></b></span>To-Do
+                    </div>
+                </div>
+                <div class="tasks-done-box" onclick="changeSite(BOARD_ID)">
+                    <img src="../img/done.png">
+                    <div class="summary-done-tasks-box flex-column">
+                        <span id="tasksDoneCount"><b></b></span>Done
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="greet-container">
+            <span id="greetText" class="greet-text"></span>
+            <span id="userFirstname" class="greet-name">Dear Guest</span>
+        </div>
+    </div>
+</div>

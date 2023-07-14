@@ -1,0 +1,19 @@
+<div class="header-content">
+    <img class="LogoImageHeader d-none pointer" src="../img/logo.svg" alt="Logo-Join" onclick="showMainpage()">
+    <div class="spanHeader">Kanban Project Management Tool</div>
+    <div class="profileImageHeader">
+        <img class="headerHelp pointer" src="./img/questionLogo.svg" alt="You need a Help?" onclick="changeSite(HELP_ID)">
+        <div class="profilePictureContainer pointer">
+            <img class="ChristinaProfileImage" src="./img/christina-wocintechchat-com-0Zx1bDv5BNY-unsplash.jpeg"
+                alt="Christina" onclick="showLogoutPopup()">
+            <div onclick="stopPropagation(event)" class="logoutBtn pointer d-none" id="logoutPopup">
+                <span onclick="changeSite(LEGALNOTICE_ID); addBackgroundColorForSpecialPages('legalNoticeSidebar'); closeLogoutPopup()" class="pointer legalNoticeResponsive">Legal notice</span>
+                <span onclick="changeSite(PRIVACY_ID); addBackgroundColorForSpecialPages('privacyPolicySidebar'); closeLogoutPopup()" class="pointer privacyPolicyResponsive">Privacy policy</span>
+                <span class="pointer" onclick="logOut()">Log Out</span>
+                <span class="pointer helpResponsive" onclick="changeSite(HELP_ID); closeLogoutPopup()">Help</span>
+            </div>
+        </div>
+    </div>
+    <div class="overlay d-none" id="overlay" onclick="closeLogoutPopup()">
+    </div>
+</div>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: login.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: login.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Whether or not the password input field is visible.
+ * @type {boolean}
+ */
+let inputPass = false;
+
+/**
+ * The key used to store the current user in localStorage.
+ * @type {string}
+ */
+const CURRENT_USER_KEY = 'currentUser';
+
+/**
+ * The current user, obtained from localStorage, or an empty array if no user is found.
+ * @type {Array.&lt;Object>}
+ */
+let currentUser = JSON.parse(localStorage.getItem(CURRENT_USER_KEY)) || [];
+
+/**
+ * An array containing the current user when they request to change their password.
+ * @type {Array.&lt;Object>}
+ */
+let currentUserForNewPassword = [];
+
+/**
+ * Initializes the app by rendering the login form after a 500ms delay.
+ * @async
+ */
+async function init() {
+  setTimeout(function() {
+    renderLogin()
+  }, 500);
+}
+
+/**
+ * Renders the login form, loading user data beforehand.
+ * @async
+ */
+async function renderLogin() {
+  let card = document.getElementById('loginForm');
+  card.innerHTML = loginTemplate();
+  let header = document.getElementById('loginHeaderRight');
+  header.classList.remove("d-none");
+  await loadUsers();
+}
+
+/**
+ * Changes the password input field icon when the user types or clears their password.
+ * @async
+ */
+async function changePWSymbol() {
+  let InputField = document.getElementById("passwordInput");
+  let Symbol = document.getElementById("passwordImg");
+  if (InputField.value == "") {
+    Symbol.src = "../img/pasword.svg";
+    Symbol.classList.remove("pointer", "opacity");
+    InputField.type = "password";
+    inputPass = false;
+  } else if ((InputField.type = "password")) {
+    Symbol.src = "../img/privacy.png";
+    Symbol.classList.add("pointer", "opacity");
+    inputPass = true;
+  } else {
+    Symbol.src = "../img/visibility.svg";
+    Symbol.classList.add("pointer", "opacity");
+    inputPass = true;
+  }
+}
+
+/**
+ * Toggles the visibility of the password input field.
+ * @async
+ */
+async function visibilityPass() {
+  let password = document.getElementById("passwordInput");
+  let passSymbol = document.getElementById("passwordImg");
+  if (inputPass === true) {
+    if (password.type === "password") {
+      password.type = "text";
+      passSymbol.src = "../img/visibility.png";
+    } else {
+      password.type = "password";
+      passSymbol.src = "../img/privacy.png";
+    }
+  }
+}
+
+/**
+ * Returns the HTML template for the login form.
+ * @returns {string} The HTML template for the login form.
+ */
+
+function loginTemplate() {
+  return /*html*/`
+            &lt;div class="cardHeaderContainer">
+                &lt;h1 class="loginH1">Log In&lt;/h1>
+                &lt;span class="underlineForH1">&lt;/span>
+            &lt;/div>
+            &lt;div class="loginInputFields">
+                &lt;div class="loginInputField">
+                    &lt;input class="loginE-Mail" type="email" required placeholder="E-mail" id="emailInput">
+                    &lt;img class="inputImg" src="../img/email.svg" alt="E-Mail">
+                &lt;/div>
+                &lt;div class="loginInputField">
+                    &lt;input class="loginE-Mail" minlength="8" type="password" required id="passwordInput" placeholder="Password" onkeydown="changePWSymbol()">
+                    &lt;img class="inputImg passwordImg" id="passwordImg" src="../img/pasword.svg" alt="Password" onclick="visibilityPass()">
+                &lt;/div>
+                &lt;div class="loginFooter">
+                  &lt;div class="loginFooterLeft">
+                    &lt;input class="loginCheckbox margin-left-rifht-5 margin pointer" type="checkbox"> 
+                    &lt;p class="rememberMe margin-left-rifht-5 margin">Remember me&lt;/p>
+                  &lt;/div>  
+                    &lt;p class="forgotPass margin-left-rifht-5 margin pointer" onclick="newPassword()">Forgot my Password&lt;/p> 
+                &lt;/div>
+            &lt;/div>
+            &lt;div class="loginFooterBtns">
+                &lt;button id="loginBtn" class="loginBtn pointer" onclick="login()">Log in&lt;/button>
+                &lt;button class="guestBtn pointer" onclick="forwardToMainPage()">Guest Log in&lt;/button>
+            &lt;/div>
+  `;
+}
+
+/**
+ * Changes the view to the sign up form
+ * @function
+ */
+function signUp() {
+  let header = document.getElementById('loginHeaderRight');
+  header.classList.add("d-none");
+  let card = document.getElementById('loginForm');
+  card.innerHTML = signUpTemplate();
+}
+
+/**
+ * Generates the HTML template for the sign up form
+ * @function
+ * @returns {string} - The sign up form HTML template
+ */
+
+function signUpTemplate() {
+  return `
+          &lt;form class="signUpForm" onsubmit="register(); return false;">
+            &lt;div class="signupHeaderContainer">
+              &lt;div class="backImgSignUp">  
+                &lt;img onclick="renderLogin()" class="backImg pointer" src="../img/arrow-left.png" alt="Back">
+              &lt;/div> 
+                &lt;h1 class="loginH1">Sign up&lt;/h1>
+                &lt;span class="underlineForH1">&lt;/span>
+            &lt;/div>
+            &lt;div class="loginInputFields">
+                &lt;div class="loginInputField">
+                    &lt;input class="loginE-Mail" type="text" required id="signUpName" placeholder="Name">
+                    &lt;img class="inputImg" src="../img/human-profile.png" alt="E-Mail">
+                &lt;/div>
+                &lt;div class="loginInputField">
+                    &lt;input class="loginE-Mail" type="email" required id="emailSignUp" placeholder="Email">
+                    &lt;img class="inputImg" src="../img/email.svg" alt="E-Mail">
+                &lt;/div>
+                &lt;div class="loginInputField">
+                    &lt;input class="loginE-Mail" type="password" required id="passwordSignUp" id="passwordInput" placeholder="Password">
+                    &lt;img class="inputImg passwordImg" id="passwordImg" src="../img/pasword.svg" alt="Password">
+                &lt;/div>
+                
+            &lt;/div>
+            &lt;div class="signupFooterBtn">
+                &lt;button id="registerBtn" class="loginBtn pointer">Sign up&lt;/button>
+            &lt;/div>
+          &lt;/form>
+  `;
+}
+/**
+ * Changes the view to the new password form
+ * @function
+ */
+function newPassword() {
+  let header = document.getElementById('loginHeaderRight');
+  header.classList.add("d-none");
+  let card = document.getElementById('loginForm');
+  card.innerHTML = newPasswordTemplate();
+}
+
+/**
+ * Generates the HTML template for the new password form
+ * @function
+ * @returns {string} - The new password form HTML template
+ */
+
+function newPasswordTemplate() {
+  return `
+    &lt;div class="signupHeaderContainer">
+      &lt;div class="backImgContainer">  
+        &lt;img onclick="renderLogin()" class="backImg pointer" src="../img/arrow-left.png" alt="Back">
+      &lt;/div> 
+      &lt;h1 class="loginH1">I forgot my password&lt;/h1>
+      &lt;span class="underlineForH1">&lt;/span>
+    &lt;/div>
+    &lt;div class="loginInputFields">
+      &lt;div class="">
+        &lt;span class="subheaderNewPassword">Don't worry! We will send you an email with the instructions to reset your password.&lt;/span>
+      &lt;/div>
+      &lt;div class="loginInputField">
+        &lt;input class="loginE-Mail" type="email" id="resetEmail" required placeholder="Email">
+        &lt;img class="inputImg" src="../img/email.svg" alt="E-Mail">
+      &lt;/div>
+    &lt;/div>
+    &lt;div class="signupFooterBtn">
+      &lt;button class="loginBtn pointer" onclick="resetPassword()">Send me the email&lt;/button>
+    &lt;/div>
+  `;
+}
+
+/**
+ * Changes the view to the reset password form
+ * @function
+ */
+function resetPassword() {
+  let header = document.getElementById('loginHeaderRight');
+  header.classList.add("d-none");
+  let card = document.getElementById('loginForm');
+  let email = document.getElementById('resetEmail').value;
+  let user = users.find(user => user.email === email);
+
+  if (!user) {
+    alert('User not found');
+    return;
+  }
+
+  currentUserForNewPassword.push(user);
+  card.innerHTML = resetPasswordTemplate();
+}
+
+/**
+ * Generates the HTML template for the reset password form
+ * @function
+ * @returns {string} - The reset password form HTML template
+ */
+function resetPasswordTemplate() {
+  return `
+    &lt;div class="signupHeaderContainer">
+      &lt;div class="backImgResetContainer">  
+        &lt;img onclick="newPassword()" class="backImg pointer" src="../img/arrow-left.png" alt="Back">
+      &lt;/div> 
+      &lt;h1 class="loginH1">Reset your password&lt;/h1>
+      &lt;span class="underlineForH1">&lt;/span>
+    &lt;/div>
+    &lt;div class="loginInputFields">
+      &lt;div class="">
+        &lt;span class="subheaderNewPassword">Change your account password&lt;/span>
+      &lt;/div>
+      &lt;div class="loginInputField">
+        &lt;input class="loginE-Mail" type="password" required id="passwordReset" placeholder="New password">
+        &lt;img class="inputImg passwordImg" id="passwordImg" src="../img/pasword.svg" alt="Password" onclick="visibilityPass()">
+      &lt;/div>
+      &lt;div class="loginInputField">
+        &lt;input class="loginE-Mail" type="password" required id="passwordResetConfirm" placeholder="Confirm password">
+        &lt;img class="inputImg passwordImg" id="passwordImg" src="../img/pasword.svg" alt="Password" onclick="visibilityPass()">
+      &lt;/div>
+    &lt;/div>
+    &lt;div class="signupFooterBtn">
+      &lt;button class="loginBtn pointer" onclick="updatePassword()">Send me the email&lt;/button>
+    &lt;/div>
+  `;
+}
+
+/**
+ * Updates the user's password and saves it to the database
+ * @function
+ * @async
+ */
+async function updatePassword() {
+  let newPassword = document.getElementById('passwordReset').value;
+  let newPasswordConfirmation = document.getElementById('passwordResetConfirm').value;
+
+  if (newPassword !== newPasswordConfirmation) {
+      alert('Passwords do not match. Please try again.');
+  }
+
+  const userIndex = users.findIndex(user => user.email === currentUserForNewPassword[0].email);
+  if (userIndex > -1) {
+    users[userIndex].password = newPassword;
+    await setItem('users', JSON.stringify(users));
+    currentUserForNewPassword = [];
+    showSuccessfullyResettedPassword()
+    renderLogin();
+  } 
+}
+
+/**
+ * Displays a success message when the user's password has been reset.
+ * @returns {void}
+ */
+function showSuccessfullyResettedPassword(){
+  createdSuccessfully();
+  document.getElementById('created-successfully-logo').innerHTML='Your password has been reset!';
+}
+
+/**
+ * Logs the user into the application.
+ * @returns {void}
+ */
+function login() {
+  let loginBtn = document.getElementById('loginBtn');
+  loginBtn.disabled = true;
+  let email = document.getElementById('emailInput').value;
+  let password = document.getElementById('passwordInput').value;
+  let user = users.find((user) => user.email === email);
+  if (!user) {
+    alert('User not found');
+    loginBtn.disabled = false;
+    return;
+  }
+  if (password !== user.password) {
+    alert('Invalid password');
+    loginBtn.disabled = false;
+    return;
+  }
+  createCurrentUser(user);
+  forwardToMainPage();
+}
+
+/**
+ * Creates a new user session.
+ * @param {Object} user - The user object.
+ * @returns {void}
+ */
+function createCurrentUser(user) {
+  currentUser.push(user);
+  localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(currentUser));
+  console.log(currentUser);
+}
+
+/**
+ * Redirects the user to the main page of the application.
+ * @returns {void}
+ */
+function forwardToMainPage() {
+  window.location.href = "../mainpage.html";
+}
+
+/**
+ * Logs the user out of the application.
+ * @returns {void}
+ */
+function logOut() {
+  localStorage.removeItem(CURRENT_USER_KEY);
+  window.location.href = "../index.html";
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#CURRENT_USER_KEY">CURRENT_USER_KEY</a></li><li><a href="global.html#changePWSymbol">changePWSymbol</a></li><li><a href="global.html#createCurrentUser">createCurrentUser</a></li><li><a href="global.html#currentUser">currentUser</a></li><li><a href="global.html#currentUserForNewPassword">currentUserForNewPassword</a></li><li><a href="global.html#forwardToMainPage">forwardToMainPage</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#inputPass">inputPass</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#loginTemplate">loginTemplate</a></li><li><a href="global.html#newPassword">newPassword</a></li><li><a href="global.html#newPasswordTemplate">newPasswordTemplate</a></li><li><a href="global.html#renderLogin">renderLogin</a></li><li><a href="global.html#resetPassword">resetPassword</a></li><li><a href="global.html#resetPasswordTemplate">resetPasswordTemplate</a></li><li><a href="global.html#showSuccessfullyResettedPassword">showSuccessfullyResettedPassword</a></li><li><a href="global.html#signUp">signUp</a></li><li><a href="global.html#signUpTemplate">signUpTemplate</a></li><li><a href="global.html#updatePassword">updatePassword</a></li><li><a href="global.html#visibilityPass">visibilityPass</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu May 04 2023 22:07:48 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
