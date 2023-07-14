@@ -388,6 +388,7 @@ body {
 }
 
 .signupFooterBtn {
+    margin-top: 30px;
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
@@ -419,7 +420,7 @@ body {
 
     .loginForm {
         flex-direction: column;
-        min-height: 60%;
+        min-height: 55%;
         width: 80%;
         min-width: 0;
         gap: 15px;
@@ -511,6 +512,10 @@ body {
 
     .loginCheckbox {
         margin-left: 0 !important;
+    }
+
+    .signupFooterBtn {
+        margin-top: 0px;
     }
 }
 

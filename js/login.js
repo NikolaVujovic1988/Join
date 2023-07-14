@@ -82,10 +82,10 @@ async function visibilityPass() {
     if (inputPass === true) {
         if (password.type === "password") {
             password.type = "text";
-            passSymbol.src = "../img/visibility.png";
+            passSymbol.src = "./img/visibility.png";
         } else {
             password.type = "password";
-            passSymbol.src = "../img/privacy.png";
+            passSymbol.src = "./img/privacy.png";
         }
     }
 }
@@ -204,7 +204,7 @@ function createCurrentUser(user) {
  * @returns {void}
  */
 function forwardToMainPage() {
-    window.location.href = "../mainpage.html";
+    window.location.href = "./mainpage.html";
 }
 
 
@@ -214,5 +214,5 @@ function forwardToMainPage() {
  */
 function logOut() {
     localStorage.removeItem(CURRENT_USER_KEY);
-    window.location.href = "../index.html";
+    window.location.href = "./index.html";
 }

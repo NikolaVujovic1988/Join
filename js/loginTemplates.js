@@ -7,7 +7,7 @@ function resetPasswordTemplate() {
     return `
         <div class="signupHeaderContainer">
             <div class="backImgResetContainer">  
-                <img onclick="newPassword()" class="backImg pointer" src="../img/arrow-left.png" alt="Back">
+                <img onclick="newPassword()" class="backImg pointer" src="./img/arrow-left.png" alt="Back">
             </div> 
             <h1 class="loginH1">Reset your password</h1>
             <span class="underlineForH1"></span>
@@ -18,11 +18,11 @@ function resetPasswordTemplate() {
             </div>
             <div class="loginInputField">
                 <input class="loginE-Mail" type="password" minlength="8" required id="passwordReset" placeholder="New password">
-                <img class="inputImg passwordImg" id="passwordImg" src="../img/pasword.svg" alt="Password" onclick="visibilityPass()">
+                <img class="inputImg passwordImg" id="passwordImg" src="./img/pasword.svg" alt="Password" onclick="visibilityPass()">
             </div>
             <div class="loginInputField">
                 <input class="loginE-Mail" type="password" minlength="8" required id="passwordResetConfirm" placeholder="Confirm password">
-                <img class="inputImg passwordImg" id="passwordImg" src="../img/pasword.svg" alt="Password" onclick="visibilityPass()">
+                <img class="inputImg passwordImg" id="passwordImg" src="./img/pasword.svg" alt="Password" onclick="visibilityPass()">
             </div>
         </div>
         <div class="signupFooterBtn">
@@ -44,11 +44,11 @@ function loginTemplate() {
       <div class="loginInputFields">
           <div class="loginInputField">
               <input class="loginE-Mail" type="email" required placeholder="E-mail" id="emailInput">
-              <img class="inputImg" src="../img/email.svg" alt="E-Mail">
+              <img class="inputImg" src="./img/email.svg" alt="E-Mail">
           </div>
           <div class="loginInputField">
               <input class="loginE-Mail" minlength="8" type="password" required id="passwordInput" placeholder="Password" onkeydown="changePWSymbol()">
-              <img class="inputImg passwordImg" id="passwordImg" src="../img/pasword.svg" alt="Password" onclick="visibilityPass()">
+              <img class="inputImg passwordImg" id="passwordImg" src="./img/pasword.svg" alt="Password" onclick="visibilityPass()">
           </div>
           <div class="loginFooter">
               <div class="loginFooterLeft">
@@ -75,7 +75,7 @@ function signUpTemplate() {
       <form class="signUpForm" onsubmit="register(); return false;">
           <div class="signupHeaderContainer">
               <div class="backImgSignUp">  
-                  <img onclick="renderLogin()" class="backImg pointer" src="../img/arrow-left.png" alt="Back">
+                  <img onclick="renderLogin()" class="backImg pointer" src="./img/arrow-left.png" alt="Back">
               </div> 
               <h1 class="loginH1">Sign up</h1>
               <span class="underlineForH1"></span>
@@ -83,15 +83,15 @@ function signUpTemplate() {
           <div class="loginInputFields">
               <div class="loginInputField">
                   <input class="loginE-Mail" type="text" required id="signUpName" placeholder="Name">
-                  <img class="inputImg" src="../img/human-profile.png" alt="E-Mail">
+                  <img class="inputImg" src="./img/human-profile.png" alt="E-Mail">
               </div>
               <div class="loginInputField">
                   <input class="loginE-Mail" type="email" required id="emailSignUp" placeholder="Email">
-                  <img class="inputImg" src="../img/email.svg" alt="E-Mail">
+                  <img class="inputImg" src="./img/email.svg" alt="E-Mail">
               </div>
               <div class="loginInputField">
                   <input class="loginE-Mail" type="password" minlength="8" required id="passwordSignUp" id="passwordInput" placeholder="Password">
-                  <img class="inputImg passwordImg" id="passwordImg" src="../img/pasword.svg" alt="Password">
+                  <img class="inputImg passwordImg" id="passwordImg" src="./img/pasword.svg" alt="Password">
               </div>     
           </div>
           <div class="signupFooterBtn">
@@ -110,7 +110,7 @@ function newPasswordTemplate() {
   return `
       <div class="signupHeaderContainer">
           <div class="backImgContainer">
-              <img src="../img/arrow-left.png" onclick="renderLogin()" class="backImg pointer" alt="Back">
+              <img src="./img/arrow-left.png" onclick="renderLogin()" class="backImg pointer" alt="Back">
           </div> 
           <h1 class="loginH1">Forgot Password</h1>
           <span class="underlineForH1"></span>
@@ -121,7 +121,7 @@ function newPasswordTemplate() {
           </div>
           <div class="loginInputField">
               <input id="resetEmail" class="loginE-Mail" type="email" placeholder="Email" required>
-              <img src="../img/email.svg" class="inputImg" alt="E-Mail">
+              <img src="./img/email.svg" class="inputImg" alt="E-Mail">
           </div>
       </div>
       <div class="signupFooterBtn">
