@@ -3,7 +3,7 @@
  * @constant
  * @type {string}
  */
-const STORAGE_TOKEN = 'HQADTBPLSZBKBQ2U1VHI24V2GU5OCLJY2VIEN5IG';
+const STORAGE_TOKEN = 'OF6HINK7BSY9SY9X1DHS1FJ5YOKG8KCAFW1CI3BX';
 
 /** 
  * Constant that holds the URL of the remote storage.
