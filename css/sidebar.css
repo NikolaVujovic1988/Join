@@ -1,23 +1,18 @@
 .sidebar-content {
     position: fixed;
+    top: 0;
+    left: 0;
     z-index: 20;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 66px 0px;
-    gap: 103px;
     width: 232px;
     height: 100%;
-    left: 0px;
-    top: 0px;
+    padding: 66px 0px;
+    justify-content: space-between;
+    gap: 103px;
     background: #2A3647;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
 }
 
 .sidebarMenu {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     gap: 12px;
@@ -26,79 +21,36 @@
     margin-top: -80px;
 }
 
-.summarySidebar {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-    padding: 12px;
-    background: #091931;
+.sidebar-img-box {
+    width: 40px;
+    height: 25px;
 }
 
-.spanSidebar {
-    width: 72px;
-    height: 19px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 120%;
-    color: #FFFFFF;
-}
-
-.spanSidebarBoard {
-    width: 72px;
-    height: 19px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 120%;
-    color: #CDCDCD;
-}
-
+.spanSidebarBoard,
 .spanImpressumSidebar {
     height: 46px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Inter';
-    font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    line-height: 120%;
     color: #CDCDCD;
 }
 
 .boardSidebar {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    color: #CDCDCD;
     gap: 20px;
     width: 100%;
     height: 46px;
-    padding-left: 25%;
+    padding-left: 20%;
 }
 
-.impressumContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.sidebar-bottom {
     padding: 40px 0px 0px;
     width: 100%;
     height: 120px;
-    flex: none;
 }
 
 .privacyPolicyLogo {
+    object-fit: contain;
     width: 20px;
     height: 22px;
-    object-fit: contain;
 }
 
 .rotate {
@@ -106,9 +58,6 @@
 }
 
 .legalNoticeContainer {
-    display: flex;
-    align-items: center;
-    justify-content: start;
     width: 100%;
     gap: 20px;
     padding-left: 15%;
@@ -129,7 +78,6 @@
     .sidebar-content {
         z-index: 5;
         bottom: 0;
-        left: 0;
         right: 0;
         height: 100px;
         padding: 0;
@@ -139,11 +87,11 @@
         width: auto;
     }
 
-    .LogoImageSidebar {
+    .sidebar-logo {
         display: none;
     }
 
-    .impressumContainer {
+    .sidebar-bottom {
         display: none;
     }
 
@@ -161,7 +109,15 @@
         flex-direction: column;
         justify-content: center;
         height: 100px;
-        padding: 12px;
-        width: auto;
+        width: 25%;
+        padding: 4px;
+        padding-top: 20px;
+        padding-bottom: 12px;
+    }
+}
+
+@media (max-width: 460px) {
+    .spanSidebarBoard {
+        font-size: 14px;
     }
 }

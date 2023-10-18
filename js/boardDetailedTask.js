@@ -14,7 +14,7 @@ function showDetailedTask(id) {
  * gets the prio from the clicked task pushes it into a variable and specifies the color
  */
 function checkPriority(id) {
-    let prio = tasks[id]['prioName'];
+    let prio = tasks[id]['prio'];
     if (prio == 'urgent') {
         currentPrioColor = '#ff3d00';
         currentPrio = prio;
@@ -56,8 +56,8 @@ function showDetailedAssignedClients(id) {
         let firstName = contacts[id]['firstname'];
         let lastName = contacts[id]['lastname'];
         clientsSection.innerHTML += `
-            <div class="popup-client-box">
-                <div class="task-client task-client-big" style="background-color:${color};">${initials}</div>
+            <div class="popup-client-box d-flex a-i-center">
+                <div class="task-client f-center task-client-big" style="background-color:${color};">${initials}</div>
                 <span class="popup-client-span">${firstName} ${lastName}</span>
             </div>
             `;

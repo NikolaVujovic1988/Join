@@ -1,22 +1,20 @@
 /** 
  * Constant that holds the storage token.
- * @constant
  * @type {string}
  */
-const STORAGE_TOKEN = 'OF6HINK7BSY9SY9X1DHS1FJ5YOKG8KCAFW1CI3BX';
+const STORAGE_TOKEN = 'HQADTBPLSZBKBQ2U1VHI24V2GU5OCLJY2VIEN5IG';
+
 
 /** 
  * Constant that holds the URL of the remote storage.
- * @constant
  * @type {string}
  */
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
+
 /**
  * Async function to set an item in the remote storage.
  * This function sends a POST request to the remote storage.
- * 
- * @async
  * @param {string} key - The key of the item.
  * @param {string} value - The value of the item.
  * @returns {Promise<object>} The response from the server in JSON format.
@@ -28,11 +26,10 @@ async function setItem(key, value) {
         .then(res => res.json());
 }
 
+
 /**
  * Async function to get an item from the remote storage.
  * This function sends a GET request to the remote storage.
- * 
- * @async
  * @param {string} key - The key of the item to fetch.
  * @returns {Promise<string|number|object|Array|boolean|null|undefined>} The value of the item.
  * @throws {Error} If the server responds with a status that is not ok, or if the key does not exist.

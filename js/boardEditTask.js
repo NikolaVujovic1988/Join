@@ -118,8 +118,7 @@ async function updateTaskInformation(id, title, desc, date) {
         'date': date,
         'subtasks': currentSubtasks,
         'clients': currentAssignedClients,
-        'prioName': currentPrio,
-        'prioImg': currentPrioImageSource,
+        'prio': currentPrio
     };
     closePopupWindow();
     showSuccessBanner('Task edited');

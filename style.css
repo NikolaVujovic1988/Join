@@ -19,33 +19,59 @@ body::-webkit-scrollbar {
     position: relative;
 }
 
+.p-absolute {
+    position: absolute;
+}
+
 .d-flex {
     display: flex !important;
-}
-
-.flex-end {
-    justify-content: flex-end;
-}
-
-.flex-column {
-    display: flex;
-    flex-direction: column;
-}
-
-.f-wrap {
-    flex-wrap: wrap;
-}
-
-.a-i-center {
-    align-items: center;
 }
 
 .d-none {
     display: none !important;
 }
 
+.f-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.f-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.f-row {
+    flex-direction: row;
+}
+
+.f-wrap {
+    flex-wrap: wrap;
+}
+
+.j-center {
+    justify-content: center;
+}
+
+.j-start {
+    justify-content: flex-start;
+}
+
+.j-end {
+    justify-content: flex-end;
+}
+
+.a-i-center {
+    align-items: center;
+}
+
 .pointer {
     cursor: pointer;
+}
+
+.text-cursor{
+    cursor: text;
 }
 
 .btn-absolute {
@@ -55,11 +81,11 @@ body::-webkit-scrollbar {
     right: 35px;
 }
 
-.margin {
-    margin: 0;
+.m-0 {
+    margin: 0 !important;
 }
 
-.margin-left-rifht-5 {
+.mlr-5 {
     margin-left: 5px;
     margin-right: 5px;
 }
@@ -78,6 +104,14 @@ body::-webkit-scrollbar {
 
 span {
     transform: scale(1, 1.01);
+}
+
+h1 {
+    font-size: 4em;
+    font-weight: 700;
+    text-align: center;
+    margin: 0;
+    margin-right: 35px;
 }
 
 h2 {
@@ -114,8 +148,20 @@ b {
     opacity: 0.3;
 }
 
+.opa-05 {
+    opacity: 0.5;
+}
+
 .gap-8 {
     gap: 8px;
+}
+
+.gap-25 {
+    gap: 25px;
+}
+
+.gap-35 {
+    gap: 35px;
 }
 
 .of-hidden {
@@ -189,7 +235,7 @@ b {
 
 .failure-banner-adjustment {
     bottom: initial !important;
-    top: 65px; 
+    top: 65px;
 }
 
 .move-up {
@@ -318,6 +364,10 @@ b {
 }
 
 @media (max-width: 1050px) {
+    .mt-100negative {
+        margin-top: unset !important;
+    }
+
     .incl-cont-side {
         position: initial;
         min-height: 100vh;
@@ -354,6 +404,12 @@ b {
         padding-top: 150px;
     }
 
+    h1 {
+        font-size: 3em;
+        padding: 0;
+        margin-right: 18px;
+    }
+
     h2 {
         font-size: 2.7em;
     }
@@ -374,5 +430,19 @@ b {
 
     .back-arrow-abs {
         top: -40px;
+    }
+
+    .gap-35 {
+        gap: 15px;
+    }
+}
+
+@media(max-width:400px) {
+    h1 {
+        font-size: 2.3em;
+    }
+
+    .gap-35 {
+        gap: 12px;
     }
 }

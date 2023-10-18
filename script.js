@@ -75,21 +75,15 @@ function changeToAddTaskSite(id) {
  */
 function showLogoutPopup() {
     let popup = document.getElementById('logoutPopup');
-    popup.classList.remove('d-none');
-    let overlay = document.getElementById('overlay');
-    overlay.classList.remove('d-none');
-    if (mediaQuery.matches) {
-        let newContactBtn = document.getElementById('createContactBtn');
-        newContactBtn.classList.add('d-none');
+    if (popup.classList.contains('d-none')) {
+        popup.classList.remove('d-none');
+        if (mediaQuery.matches) {
+            let newContactBtn = document.getElementById('createContactBtn');
+            newContactBtn.classList.add('d-none');
+        }
+    } else {
+        closeLogoutPopup();
     }
-}
-
-
-/**
- * prevents a element in the background not to trigger 
- */
-function stopPropagation(event) {
-    event.stopPropagation();
 }
 
 
@@ -99,12 +93,18 @@ function stopPropagation(event) {
 function closeLogoutPopup() {
     let popup = document.getElementById('logoutPopup');
     popup.classList.add('d-none');
-    let overlay = document.getElementById('overlay');
-    overlay.classList.add('d-none');
-    if (mediaQuery.matches) {
+    if (mediaQuery.matches && !onContactCard) {
         let newContactBtn = document.getElementById('createContactBtn');
         newContactBtn.classList.remove('d-none');
     }
+}
+
+
+/**
+ * prevents a element in the background not to trigger 
+ */
+function stopPropagation(event) {
+    event.stopPropagation();
 }
 
 
@@ -169,7 +169,6 @@ function getFocusOnInputField(id) {
 function clearVariables() {
     currentCat = '';
     currentPrio = '';
-    currentPrioImageSource = '';
     currentAssignedClients = [];
     currentSubtasks = [];
     fieldsFilledCorrectly = false;

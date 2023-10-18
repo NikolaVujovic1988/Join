@@ -47,8 +47,7 @@ async function addTask(title, desc, date) {
             'date': date,
             'subtasks': currentSubtasks,
             'clients': currentAssignedClients,
-            'prioName': currentPrio,
-            'prioImg': currentPrioImageSource,
+            'prio': currentPrio
         }
     );
     await setItemTasks(tasks);
@@ -127,8 +126,7 @@ function saveCurrentInput() {
             'date': document.getElementById('addTaskDate').value,
             'subtasks': currentSubtasks,
             'clients': currentAssignedClients,
-            'prioName': currentPrio,
-            'prioImg': currentPrioImageSource,
+            'prio': currentPrio
         }
     );
 }
@@ -151,8 +149,7 @@ function loadTaskCache() {
  */
 function loadCurrentVariablesFromCache(task) {
     currentCat = task['topic'];
-    currentPrio = task['prioName'];
-    currentPrioImageSource = task['prioImg'];
+    currentPrio = task['prio'];
     currentAssignment = task['category'];
 }
 

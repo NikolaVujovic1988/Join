@@ -66,11 +66,7 @@ textarea:focus-visible {
 }
 
 .addTask-content {
-    display: flex;
     align-items: flex-start;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
     overflow: visible;
 }
 
@@ -81,7 +77,6 @@ textarea:focus-visible {
 .addTask-form {
     height: 64vh;
     width: 100%;
-    display: flex;
 }
 
 .addTask-form-left-container {
@@ -98,9 +93,6 @@ textarea:focus-visible {
 }
 
 .addTask-prio-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     gap: 7px;
 }
 
@@ -120,9 +112,6 @@ textarea:focus-visible {
 
 .prio {
     width: 33%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding-bottom: 8px;
     padding-top: 8px;
     padding-left: 10px;
@@ -131,7 +120,6 @@ textarea:focus-visible {
     border: 1px solid rgb(236, 236, 236);
     background-color: white;
     font-size: 1em;
-    cursor: pointer;
 }
 
 .prio:hover {
@@ -169,8 +157,6 @@ textarea:focus-visible {
     right: 0;
     bottom: 65px;
     height: 50px;
-    display: flex;
-    justify-content: flex-end;
     gap: 21px;
     margin-top: 35px;
 }
@@ -186,7 +172,7 @@ textarea:focus-visible {
     font-weight: 600;
     color: rgba(0, 0, 59, 0.8);
     cursor: pointer;
-    transition: 150ms all ease-in-out;
+    transition: all 125ms ease-in-out;
 }
 
 .add-task-button {
@@ -198,13 +184,9 @@ textarea:focus-visible {
     font-size: 1.3em;
     font-weight: 600;
     color: rgba(0, 0, 59, 0.8);
-    cursor: pointer;
     background-color: #2a3647 !important;
     color: white !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 150ms all ease-in-out;
+    transition: all 125ms ease-in-out;
 }
 
 .add-task-adjustment {
@@ -224,10 +206,9 @@ textarea:focus-visible {
     font-size: 1.2em;
     font-weight: 600;
     color: rgba(0, 0, 59, 0.8);
-    cursor: pointer;
     background-color: #2a3647 !important;
     color: white !important;
-    transition: 150ms all ease-in-out;
+    transition: all 125ms ease-in-out;
 }
 
 .submit-btn:hover,
@@ -249,9 +230,6 @@ textarea:focus-visible {
 }
 
 .addTask-subtask-container {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     margin-top: 4px;
     margin-bottom: 4px;
     font-size: 0.8em;
@@ -298,8 +276,8 @@ select {
     background-color: white;
     border-radius: 30px;
     padding: 65px;
-    position: relative;
-    display: grid;
+    display: flex;
+    flex-direction: column;
 }
 
 .popup-container::-webkit-scrollbar {
@@ -315,9 +293,6 @@ select {
     padding: 65px;
     padding-top: 44px;
     padding-bottom: 44px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
     align-items: flex-start;
     overflow: scroll;
     -ms-overflow-style: none;
@@ -337,7 +312,6 @@ select {
     width: 20px;
     border-radius: 10px;
     transform: rotate(45deg);
-    cursor: pointer;
 }
 
 .dropdown {
@@ -348,7 +322,6 @@ select {
     padding-top: 8px;
     padding-left: 18px;
     padding-right: 15px;
-    cursor: pointer;
     background-color: white;
     border-radius: 8px;
     border: 1px solid lightgrey;
@@ -439,8 +412,6 @@ label input {
     cursor: default;
     background: none;
     background-color: white;
-    display: flex;
-    align-items: center;
     justify-content: space-between;
 }
 
@@ -458,10 +429,7 @@ label input {
 }
 
 .create-cat-icon-box {
-    display: flex;
-    align-items: center;
     gap: 8px;
-    cursor: pointer;
 }
 
 .gap-line {
@@ -479,17 +447,12 @@ label input {
 }
 
 .new-cat-color-select-box {
-    display: flex;
     padding-top: 12px;
     padding-left: 8px;
     gap: 4px;
 }
 
-.dot-hover:hover {
-    border: 1px solid black;
-    box-shadow: 1px 4px 3px -1px rgba(0, 0, 0, 0.2), -1px 4px 3px -1px rgba(0, 0, 0, 0.2);
-}
-
+.dot-hover:hover,
 .color-dot-bg {
     border: 1px solid black;
     box-shadow: 1px 4px 3px -1px rgba(0, 0, 0, 0.2), -1px 4px 3px -1px rgba(0, 0, 0, 0.2);
@@ -511,33 +474,11 @@ label input {
     width: 100%;
     height: auto;
     max-height: 150px;
-    display: flex;
-    flex-direction: column;
     overflow-y: visible;
     overflow-x: hidden;
 }
 
-.task-added-popup-container {
-    position: absolute;
-    align-self: center;
-    justify-self: center;
-    z-index: 99;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-    padding: 20px 40px;
-    border-radius: 20px;
-    font-size: 1.25em;
-    font-weight: 500;
-    background-color: #2a3647;
-    color: white;
-    box-shadow: 1px 4px 3px -1px rgba(0, 0, 0, 0.16), -1px 4px 3px -1px rgba(0, 0, 0, 0.16);
-    transform: translateY(60vh) !important;
-}
-
 .added-clients-box {
-    display: flex;
     flex-wrap: wrap;
     padding-bottom: 25px;
 }
@@ -598,9 +539,6 @@ label input {
     width: 22px;
     border-radius: 2px;
     background-color: #ffa800;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .exclamation {
@@ -632,7 +570,6 @@ label input {
     width: 20px;
     border-radius: 10px;
     transform: rotate(45deg);
-    cursor: pointer;
 }
 
 .empty-field-popup-repositioning-1 {
@@ -704,10 +641,10 @@ label input {
     }
 
     .popup-container {
-        min-height: 100%;
+        min-height: unset;
         width: 100%;
         border-radius: 0;
-        padding-top: 493px;
+        padding-top: 480px;
         background-color: rgb(249, 249, 249);
     }
 
@@ -728,7 +665,7 @@ label input {
     }
 
     .back-btn-addTask-popup {
-        top: 472px;
+        top: 460px;
         right: 65px;
     }
 
@@ -786,6 +723,7 @@ label input {
     .popup-container {
         padding-left: 35px;
         padding-right: 35px;
+        padding-top: 410px;
     }
 
     .popup-container h2 {
@@ -798,6 +736,7 @@ label input {
     }
 
     .back-btn-addTask-popup {
+        top: 390px;
         right: 35px;
     }
 
@@ -838,6 +777,10 @@ label input {
         height: 10px;
         width: 14px;
     }
+
+    .addTask-commit-buttons button {
+        font-size: 1em;
+    }
 }
 
 @media (max-width: 350px) {
@@ -848,5 +791,45 @@ label input {
         padding: 10px;
         border-radius: 50%;
         background-color: #ffffffd9;
+    }
+}
+
+@media (max-height: 900px) {
+    .popup-container {
+        padding-top: 550px;
+    }
+
+    .back-btn-addTask-popup {
+        top: 530px;
+    }
+}
+
+@media (max-height: 720px) {
+    .popup-container {
+        padding-top: 650px;
+    }
+
+    .back-btn-addTask-popup {
+        top: 630px;
+    }
+}
+
+@media (max-height: 620px) {
+    .popup-container {
+        padding-top: 750px;
+    }
+
+    .back-btn-addTask-popup {
+        top: 730px;
+    }
+}
+
+@media (max-height: 520px) {
+    .popup-container {
+        padding-top: 850px;
+    }
+
+    .back-btn-addTask-popup {
+        top: 830px;
     }
 }

@@ -1,34 +1,24 @@
 /**
- * Whether or not the password input field is visible.
- * @type {boolean}
- */
-let inputPass = false;
-
-/**
  * The key used to store the current user in localStorage.
- * @type {string}
  */
 const CURRENT_USER_KEY = 'currentUser';
 
 /**
  * The current user, obtained from localStorage, or an empty array if no user is found.
- * @type {Array.<Object>}
  */
 let currentUser = JSON.parse(localStorage.getItem(CURRENT_USER_KEY)) || [];
 
 /**
  * An array containing the current user when they request to change their password.
- * @type {Array.<Object>}
  */
 let currentUserForNewPassword = [];
 
 
 /**
  * Initializes the app by rendering the login form after a 300ms delay.
- * @async
  */
-async function init() {
-    setTimeout(function() {
+function init() {
+    setTimeout(function () {
         renderLogin()
     }, 300);
 }
@@ -36,7 +26,6 @@ async function init() {
 
 /**
  * Renders the login form, loading user data beforehand.
- * @async
  */
 async function renderLogin() {
     document.title = 'Join | Log in';
@@ -50,42 +39,39 @@ async function renderLogin() {
 
 /**
  * Changes the password input field icon when the user types or clears their password.
- * @async
  */
-async function changePWSymbol() {
-    let inputField = document.getElementById("passwordInput");
-    let symbol = document.getElementById("passwordImg");
-    if (inputField.value == "") {
-        symbol.src = "../img/pasword.svg";
-        symbol.classList.remove("pointer", "opacity");
-        inputField.type = "password";
-        inputPass = false;
-    } else if ((inputField.type = "password")) {
-        symbol.src = "../img/privacy.png";
-        symbol.classList.add("pointer", "opacity");
-        inputPass = true;
+function changePWSymbol(id) {
+    let parentDiv = document.getElementById(`${id}`);
+    let input = parentDiv.querySelector("input");
+    let symbol = parentDiv.querySelector("img");
+    if (input.value == "") {
+        symbol.src = "../assets/icons/password.svg";
+        symbol.classList.remove("pointer", "opa-05");
+        input.type = "password";
+    } else if ((input.type = "password")) {
+        symbol.src = "../assets/icons/privacy.png";
+        symbol.classList.add("pointer", "opa-05");
     } else {
-        symbol.src = "../img/visibility.svg";
-        symbol.classList.add("pointer", "opacity");
-        inputPass = true;
+        symbol.src = "../assets/icons/visibility.png";
+        symbol.classList.add("pointer", "opa-05");
     }
 }
 
 
 /**
  * Toggles the visibility of the password input field.
- * @async
  */
-async function visibilityPass() {
-    let password = document.getElementById("passwordInput");
-    let passSymbol = document.getElementById("passwordImg");
-    if (inputPass === true) {
-        if (password.type === "password") {
-            password.type = "text";
-            passSymbol.src = "./img/visibility.png";
+function showPassword(id) {
+    let parentDiv = document.getElementById(`${id}`);
+    let input = parentDiv.querySelector("input");
+    let symbol = parentDiv.querySelector("img");
+    if (input.value.length > 0) {
+        if (input.type === "password") {
+            input.type = "text";
+            symbol.src = "../assets/icons/visibility.png";
         } else {
-            password.type = "password";
-            passSymbol.src = "./img/privacy.png";
+            input.type = "password";
+            symbol.src = "../assets/icons/privacy.png";
         }
     }
 }
@@ -93,12 +79,9 @@ async function visibilityPass() {
 
 /**
  * Changes the view to the sign up form
- * @function
  */
 function signUp() {
-    document.title = 'Join | Sign Up';
-    let header = document.getElementById('loginHeaderRight');
-    header.classList.add("d-none");
+    adjustHeader('Join | Sign Up');
     let card = document.getElementById('loginForm');
     card.innerHTML = signUpTemplate();
 }
@@ -106,12 +89,9 @@ function signUp() {
 
 /**
  * Changes the view to the new password form
- * @function
  */
 function newPassword() {
-    document.title = 'Join | Reset Password';
-    let header = document.getElementById('loginHeaderRight');
-    header.classList.add("d-none");
+    adjustHeader('Join | Reset Password');
     let card = document.getElementById('loginForm');
     card.innerHTML = newPasswordTemplate();
 }
@@ -119,79 +99,76 @@ function newPassword() {
 
 /**
  * Changes the view to the reset password form
- * @function
  */
 function resetPassword() {
-    document.title = 'Join | Reset Password';
-    let header = document.getElementById('loginHeaderRight');
-    header.classList.add("d-none");
+    adjustHeader('Join | Reset Password');
     let card = document.getElementById('loginForm');
     let email = document.getElementById('resetEmail').value;
     let user = users.find(user => user.email === email);
-
     if (!user) {
         showFailureBanner('User not found!');
         return;
+    } else {
+        currentUserForNewPassword.push(user);
+        card.innerHTML = resetPasswordTemplate();
+        showSuccessBanner('New password send');
     }
-
-    currentUserForNewPassword.push(user);
-    card.innerHTML = resetPasswordTemplate();
 }
 
 
 /**
- * Updates the user's password and saves it to the database
- * @function
- * @async
+ * checks if the new given password input is correct
  */
 async function updatePassword() {
-    let newPassword = document.getElementById('passwordReset').value;
-    let newPasswordConfirmation = document.getElementById('passwordResetConfirm').value;
-
-    if (newPassword !== newPasswordConfirmation) {
-        showFailureBanner(`Passwords dont match!<br>Try again`);
-    }
-
+    let parentDiv = document.getElementById('passwordReset');
+    let newPassword = parentDiv.querySelector("Input").value;
+    let parentDivConfirm = document.getElementById('passwordResetConfirm');
+    let newPasswordConfirm = parentDivConfirm.querySelector("Input").value;
     const userIndex = users.findIndex(user => user.email === currentUserForNewPassword[0].email);
-    if (userIndex > -1) {
-        users[userIndex].password = newPassword;
-        await setItem('users', JSON.stringify(users));
-        currentUserForNewPassword = [];
-        showSuccessBanner('Password resetted');
-        renderLogin();
-    } 
+    if (newPassword !== newPasswordConfirm) {
+        showFailureBanner(`Passwords dont match!<br>Try again`);
+    } else if (userIndex > -1) {
+        await setNewPassword(userIndex, newPassword);
+    }
+}
+
+
+/**
+ * saves the new password on the server and shows feedback
+ */
+async function setNewPassword(userIndex, newPassword) {
+    users[userIndex].password = newPassword;
+    await setItem('users', JSON.stringify(users));
+    currentUserForNewPassword = [];
+    showSuccessBanner('Password resetted');
+    renderLogin();
 }
 
 
 /**
  * Logs the user into the application.
- * @returns {void}
  */
 function login() {
-    let loginBtn = document.getElementById('loginBtn');
-    loginBtn.disabled = true;
+    disableBtn('loginBtn');
     let email = document.getElementById('emailInput').value;
     let password = document.getElementById('passwordInput').value;
     let user = users.find((user) => user.email === email);
     if (!user) {
         showFailureBanner('User not found!');
-        loginBtn.disabled = false;
-        return;
-    }
-    if (password !== user.password) {
+        enableBtn('loginBtn');
+    } else if (password !== user.password) {
         showFailureBanner('Invalid password!');
-        loginBtn.disabled = false;
-        return;
+        enableBtn('loginBtn');
+    } else {
+        createCurrentUser(user);
+        forwardToMainPage();
     }
-    createCurrentUser(user);
-    forwardToMainPage();
 }
 
 
 /**
  * Creates a new user session.
  * @param {Object} user - The user object.
- * @returns {void}
  */
 function createCurrentUser(user) {
     currentUser.push(user);
@@ -201,18 +178,46 @@ function createCurrentUser(user) {
 
 /**
  * Redirects the user to the main page of the application.
- * @returns {void}
  */
 function forwardToMainPage() {
-    window.location.href = "./mainpage.html";
+    window.location.href = "../html/mainpage.html";
 }
 
 
 /**
  * Logs the user out of the application.
- * @returns {void}
  */
 function logOut() {
     localStorage.removeItem(CURRENT_USER_KEY);
-    window.location.href = "./index.html";
+    window.location.href = "../index.html";
+}
+
+
+/**
+ * hides the header and adjusts the document title
+ */
+function adjustHeader(text) {
+    document.title = `${text}`;
+    let header = document.getElementById('loginHeaderRight');
+    header.classList.add("d-none");
+}
+
+
+/**
+ * disables a specific button
+ * @param {*string} btnID - Id of button
+ */
+function disableBtn(btnID) {
+    let button = document.getElementById(`${btnID}`);
+    button.disabled = true;
+}
+
+
+/**
+ * enables a specific button
+ * @param {*string} btnID - Id of button
+ */
+function enableBtn(btnID) {
+    let button = document.getElementById(`${btnID}`);
+    button.disabled = false;
 }

@@ -1,42 +1,42 @@
-<div class="board-headline-container">
+<div class="board-headline-container d-flex a-i-center">
     <div class="spanMainpage d-none">Kanban Project Management Tool</div>
     <h2>Board</h2>
-    <div class="board-search-and-add m-b-45">
-        <div class="board-search-box">
+    <div class="board-search-and-add d-flex m-b-45">
+        <div class="board-search-box d-flex a-i-center pointer">
             <input id="searchTasks" type="text" placeholder="Find Task" onkeydown="filterTasks()">
-            <img class="board-headline-icon" src="../img/loupe.png" onclick="clearSearchField()">
+            <img class="board-headline-icon" src="../assets/icons/loupe.png" onclick="clearSearchField()">
         </div>
-        <div class="add-task-button" onclick="showAddTaskWindow()">
+        <div class="add-task-button f-center pointer" onclick="showAddTaskWindow()">
             <span>Add Task</span>
-            <img class="board-headline-icon whiteout-icon" src="../img/plus.png">
+            <img class="board-headline-icon whiteout-icon" src="../assets/icons/plus_blue.png">
         </div>
     </div>
 </div>
-<div class="board-content">
-    <div class="board-section">
-        <div class="board-section-category">
+<div class="board-content d-flex f-row">
+    <div class="board-section f-column">
+        <div class="board-section-category d-flex pointer">
             <h3>To Do</h3>
-            <img id="plus1" src="../img/plus.png" class="board-plus-icon" onmouseover="changeIconColor('plus1')"
+            <img id="plus1" src="../assets/icons/plus_blue.png" class="board-plus-icon" onmouseover="changeIconColor('plus1')"
                 onmouseleave="removeIconColor('plus1')" onclick="setAssignment('toDo'); showAddTaskWindow()">
         </div>
         <div class="drag-drop-area" id="toDo" ondrop="moveTo('toDo'); removeHighlight('toDo')"
             ondragover="allowDrop(event); showHighlight('toDo')" ondragleave="removeHighlight('toDo')">
         </div>
     </div>
-    <div class="board-section">
-        <div class="board-section-category">
+    <div class="board-section f-column">
+        <div class="board-section-category d-flex pointer">
             <h3>In Progress</h3>
-            <img id="plus2" src="../img/plus.png" class="board-plus-icon" onmouseover="changeIconColor('plus2')"
+            <img id="plus2" src="../assets/icons/plus_blue.png" class="board-plus-icon" onmouseover="changeIconColor('plus2')"
                 onmouseleave="removeIconColor('plus2')" onclick="setAssignment('inProgress'); showAddTaskWindow()">
         </div>
         <div class="drag-drop-area" id="inProgress" ondrop="moveTo('inProgress'); removeHighlight('inProgress')"
             ondragover="allowDrop(event); showHighlight('inProgress')" ondragleave="removeHighlight('inProgress')">
         </div>
     </div>
-    <div class="board-section">
-        <div class="board-section-category">
+    <div class="board-section f-column">
+        <div class="board-section-category d-flex pointer">
             <h3>Awaiting Feedback</h3>
-            <img id="plus3" src="../img/plus.png" class="board-plus-icon" onmouseover="changeIconColor('plus3')"
+            <img id="plus3" src="../assets/icons/plus_blue.png" class="board-plus-icon" onmouseover="changeIconColor('plus3')"
                 onmouseleave="removeIconColor('plus3')" onclick="setAssignment('awaitFeedback'); showAddTaskWindow()">
         </div>
         <div class="drag-drop-area" id="awaitFeedback"
@@ -45,10 +45,10 @@
             ondragleave="removeHighlight('awaitFeedback')">
         </div>
     </div>
-    <div class="board-section">
-        <div class="board-section-category">
+    <div class="board-section f-column">
+        <div class="board-section-category d-flex pointer">
             <h3>Done</h3>
-            <img id="plus4" src="../img/plus.png" class="board-plus-icon" onmouseover="changeIconColor('plus4')"
+            <img id="plus4" src="../assets/icons/plus_blue.png" class="board-plus-icon" onmouseover="changeIconColor('plus4')"
                 onmouseleave="removeIconColor('plus4')" onclick="setAssignment('done'); showAddTaskWindow()">
         </div>
         <div class="drag-drop-area" id="done" ondrop="moveTo('done'); removeHighlight('done')"
@@ -56,6 +56,6 @@
         </div>
     </div>
 </div>
-<div class="submit-btn addTask-btn-responsive resp-btn-extra" onclick="showAddTaskWindow()">
-    <img class="whiteout-icon" src="../img/plus.png">
+<div class="submit-btn pointer addTask-btn-responsive resp-btn-extra" onclick="showAddTaskWindow()">
+    <img class="whiteout-icon" src="../assets/icons/plus_blue.png">
 </div>

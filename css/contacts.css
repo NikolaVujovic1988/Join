@@ -3,7 +3,6 @@
     width: 100%;
     padding-top: 89px;
     padding-left: 232px;
-    display: flex;
 }
 
 .contacts-headline h2 {
@@ -33,9 +32,6 @@
 .contact-list-container {
     min-width: 400px;
     overflow: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: white;
     position: sticky;
     box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.1);
@@ -51,9 +47,6 @@
 .contact-box-initials {
     min-width: 50px;
     min-height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border-radius: 100%;
     color: white;
     font-size: 1.1em;
@@ -62,17 +55,14 @@
 }
 
 .contact-box {
-    display: flex;
-    align-items: center;
     padding: 20px;
     gap: 35px;
-    transition: all 225ms ease-in-out;
     border-radius: 22px;
     margin-top: 14px;
+    transition: all 125ms ease-in-out;
 }
 
 .contact-box:hover {
-    cursor: pointer;
     background-image: linear-gradient(to bottom, #ffffff, #dedede);
 }
 
@@ -112,9 +102,6 @@
     color: white;
     border-radius: 100%;
     border: 5px double white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 44px;
     font-weight: 500;
 }
@@ -125,9 +112,6 @@
     color: white;
     border-radius: 100%;
     border: 5px double white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 50px;
     font-weight: 500;
 }
@@ -138,12 +122,8 @@
 }
 
 .contact-name-big {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 47px;
     font-weight: 500;
-    flex-direction: column;
     gap: 13px;
     margin-left: 25px;
 }
@@ -152,25 +132,15 @@
     color: #29ABE2;
     font-size: 16px;
     font-weight: 400;
-    display: flex;
-    justify-content: flex-start;
     width: 100%;
-    align-items: center;
     gap: 13px;
-    cursor: pointer;
 }
 
 .add-task-btn img {
     height: 16px;
 }
 
-.add-task-btn span:hover {
-    font-weight: 700;
-}
-
 .edit-contact-section {
-    display: flex;
-    align-items: center;
     font-size: 21px;
     font-weight: 400;
     gap: 60px;
@@ -187,7 +157,9 @@
     gap: 15px;
 }
 
-.contact-email b {
+.add-task-btn span:hover,
+.contact-email b,
+.contact-phone b {
     font-weight: 700;
 }
 
@@ -202,12 +174,7 @@
     margin-top: 22px;
 }
 
-.contact-phone b {
-    font-weight: 700;
-}
-
 .create-contact-btn {
-    display: flex;
     position: absolute;
     z-index: 9;
     padding: 15px;
@@ -217,12 +184,10 @@
     right: 65px;
     gap: 8px;
     color: white;
-    justify-content: center;
-    align-items: center;
     font-size: 1.3em;
     font-weight: 600;
-    cursor: pointer;
     border: 1px solid white;
+    transition: all 125ms ease-in-out;
 }
 
 .add-contact-popup,
@@ -265,13 +230,12 @@
 
 .add-contact-form {
     width: 100%;
+    padding-right: 48px;
+    text-overflow: ellipsis;
 }
 
 .add-contact-form-container,
 .edit-contact-form-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
     width: 70%;
     height: 100%;
     gap: 30px;
@@ -281,21 +245,22 @@
 
 .add-contact-img,
 .edit-contact-img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100%;
 }
 
 .input-icon {
     position: absolute;
-    top: 7px;
+    top: 10px;
     right: 17px;
+}
+
+.input-icon-phone {
+    top: 8px !important;
+    right: 15px !important;
 }
 
 .add-btn-container {
     gap: 21px;
-    display: flex;
     align-self: flex-end;
     margin-top: 20px;
 }
@@ -306,13 +271,10 @@
 
 .cancel-create-contact-btn,
 .delete-contact-btn {
-    display: flex;
-    align-items: center;
     font-size: 21px;
     padding: 15px;
     background-color: white;
-    cursor: pointer;
-    transition: 150ms all ease-in-out;
+    transition: all 125ms ease-in-out;
     border-radius: 10px;
     font-weight: 500;
     border: 1px solid #2a3647;
@@ -321,14 +283,11 @@
 
 .create-contact-btn-popup,
 .edit-contact-btn {
-    display: flex;
-    align-items: center;
     font-size: 21px;
     padding: 15px;
     border-radius: 10px;
     font-weight: 600;
-    cursor: pointer;
-    transition: 150ms all ease-in-out;
+    transition: all 125ms ease-in-out;
     gap: 8px;
     border: 1px solid #2a3647;
     background-color: #2a3647 !important;
@@ -361,7 +320,6 @@
     height: 32px;
     right: 20px;
     top: 20px;
-    cursor: pointer;
 }
 
 .bg-highlight {
@@ -381,7 +339,6 @@
 .edit-contact:hover {
     font-weight: 700;
     color: #29ABE2;
-    cursor: pointer;
 }
 
 .horizontal-line {
@@ -560,10 +517,7 @@
         height: 75%;
         gap: 25px;
         padding-left: 0;
-    }
-
-    .mt-100negative {
-        margin-top: unset !important;
+        padding-right: 0;
     }
 
     .close-add-contact-btn,

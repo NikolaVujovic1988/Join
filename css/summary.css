@@ -4,15 +4,7 @@
     box-sizing: border-box;
 }
 
-.summary-content {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
 .summary-headline-container {
-    display: flex;
-    align-items: center;
     margin-bottom: 65px;
     margin-top: -10px;
 }
@@ -32,29 +24,20 @@
     margin-right: 30px;
 }
 
-.task-count-boxes-top-row {
-    gap: 35px;
-}
-
 .task-count-box {
     height: 170px;
     width: 170px;
     border-radius: 30px;
     background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1);
-    transition: all 150ms ease-in-out;
+    transition: all 125ms ease-in-out;
 }
 
 .task-count-box:hover {
     background-color: #2A3647;
     transform: scale(1.1);
     color: white;
-    cursor: pointer;
 }
 
 .task-count-box-description {
@@ -63,9 +46,7 @@
 }
 
 .urgent-tasks-box {
-    display: flex;
     justify-content: space-evenly;
-    align-items: center;
     width: 580px;
     height: 150px;
     background-color: white;
@@ -73,15 +54,13 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1);
     margin-top: 40px;
-    cursor: pointer;
-    transition: all 150ms ease-in-out;
+    transition: all 125ms ease-in-out;
 }
 
 .urgent-tasks-box:hover {
     background-color: #2A3647;
     transform: scale(1.06);
     color: white;
-    cursor: pointer;
 }
 
 .urgent-tasks-box img {
@@ -94,22 +73,12 @@
     height: 115px;
 }
 
-.deadline {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.deadline b {
+.urgent-tasks-box b {
     font-size: 21px;
     margin-bottom: 14px;
 }
 
 .task-count-boxes-bottom-row {
-    display: flex;
-    align-items: center;
-    gap: 35px;
     width: 580px;
     height: 150px;
     margin-top: 40px;
@@ -123,11 +92,8 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 20px;
-    transition: all 150ms ease-in-out;
+    transition: all 125ms ease-in-out;
 }
 
 .tasks-to-do-box:hover,
@@ -135,7 +101,6 @@
     background-color: #2A3647;
     transform: scale(1.1);
     color: white;
-    cursor: pointer;
 }
 
 .tasks-to-do-box img,
@@ -144,10 +109,7 @@
 }
 
 .greet-container {
-    display: flex;
-    justify-content: center;
     align-items: flex-start;
-    flex-direction: column;
     margin-top: 45px;
     padding-left: 45px;
 }
@@ -242,11 +204,11 @@
         height: 105px !important;
     }
 
-    .deadline {
+    .fs-14 {
         font-size: 14px;
     }
 
-    .deadline b {
+    .urgent-tasks-box b {
         font-size: 16px;
     }
 
@@ -306,10 +268,6 @@
         transform: none;
     }
 
-    .task-count-boxes-top-row {
-        gap: 15px;
-    }
-
     .urgent-tasks-box {
         margin-top: 24px;
         width: 360px;
@@ -339,10 +297,8 @@
 }
 
 @media(max-width:420px) {
-
     .task-count-boxes-top-row,
     .task-count-boxes-bottom-row {
-        gap: 12px;
         width: 300px;
         height: 100px;
     }

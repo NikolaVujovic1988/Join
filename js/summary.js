@@ -73,7 +73,7 @@ function showTaskNumbers(category, id) {
  * displays the number of urgent tasks
  */
 function showUrgentTasksCount() {
-    let urgentTasks = tasks.filter(u => u.prioName === 'urgent');
+    let urgentTasks = tasks.filter(u => u.prio === 'urgent');
     document.getElementById('urgentTasksCount').innerHTML = urgentTasks.length;
 }
 

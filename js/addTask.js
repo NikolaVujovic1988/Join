@@ -69,7 +69,7 @@ function removeIMGBrightening() {
 function removePrioHighlight(element, id) {
     element.classList.remove(`${id}-highlight`);
     currentPrio = '';
-    currentPrioImageSource = '';
+    // currentPrioImageSource = '';
 }
 
 
@@ -102,7 +102,6 @@ function changePrioProperties(shownPrio, hidingPrio1, hidingPrio2) {
     let icon = document.getElementById(`${shownPrio}Icon`);
     icon.classList.add('img-brightening');
     currentPrio = shownPrio;
-    currentPrioImageSource = `../img/prio_${shownPrio}.png`;
 }
 
 

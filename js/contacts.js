@@ -100,9 +100,9 @@ async function renderContacts(id) {
  * @param {number} i - the index of the selected contact 
  */
 function openDetailedContactCard(i) {
+    onContactCard = true;
     let contactPopup = document.getElementById('contactInfo');
     contactPopup.innerHTML = openContactTemplate(i);
-
     if (mediaQuery.matches) { //Responsive view, removes Buttons
         adjustStyleForResponsiveView();
     } else {
@@ -133,6 +133,7 @@ function closeContactCard() {
         document.getElementById('closeContactCardBtn').classList.remove('d-flex');
         document.getElementById('editContactBtnBox').classList.add('d-none');
     }
+    onContactCard = false;
     removeAllHighlightsFromContacts();
 }
 
