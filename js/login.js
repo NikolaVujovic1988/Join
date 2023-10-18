@@ -45,14 +45,14 @@ function changePWSymbol(id) {
     let input = parentDiv.querySelector("input");
     let symbol = parentDiv.querySelector("img");
     if (input.value == "") {
-        symbol.src = "../assets/icons/password.svg";
+        symbol.src = "./assets/icons/password.svg";
         symbol.classList.remove("pointer", "opa-05");
         input.type = "password";
     } else if ((input.type = "password")) {
-        symbol.src = "../assets/icons/privacy.png";
+        symbol.src = "./assets/icons/privacy.png";
         symbol.classList.add("pointer", "opa-05");
     } else {
-        symbol.src = "../assets/icons/visibility.png";
+        symbol.src = "./assets/icons/visibility.png";
         symbol.classList.add("pointer", "opa-05");
     }
 }
@@ -68,10 +68,10 @@ function showPassword(id) {
     if (input.value.length > 0) {
         if (input.type === "password") {
             input.type = "text";
-            symbol.src = "../assets/icons/visibility.png";
+            symbol.src = "./assets/icons/visibility.png";
         } else {
             input.type = "password";
-            symbol.src = "../assets/icons/privacy.png";
+            symbol.src = "./assets/icons/privacy.png";
         }
     }
 }
@@ -180,7 +180,7 @@ function createCurrentUser(user) {
  * Redirects the user to the main page of the application.
  */
 function forwardToMainPage() {
-    window.location.href = "../html/mainpage.html";
+    window.location.href = "./html/mainpage.html";
 }
 
 

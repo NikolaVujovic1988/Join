@@ -20,8 +20,8 @@ function generateTask(task, taskSection, topicName, topicColor, progress, subtas
                 <img src="../assets/icons/prio_${task['prio']}.png" class="task-prio-icon">
             </div>
             <div class="switch-category">
-                <img src="/assets/icons/up_arrow.png" onclick="stopPropagation(event); upCategory(${task['id']})">
-                <img src="/assets/icons/up_arrow.png" onclick="stopPropagation(event); downCategory(${task['id']})">
+                <img src="../assets/icons/up_arrow.png" onclick="stopPropagation(event); upCategory(${task['id']})">
+                <img src="../assets/icons/up_arrow.png" onclick="stopPropagation(event); downCategory(${task['id']})">
             </div>
         </div>
     `;

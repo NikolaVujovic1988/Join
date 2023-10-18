@@ -2,7 +2,7 @@
  * Constant that holds the storage token.
  * @type {string}
  */
-const STORAGE_TOKEN = 'HQADTBPLSZBKBQ2U1VHI24V2GU5OCLJY2VIEN5IG';
+const STORAGE_TOKEN = 'DKUZUD7M5V6WTWRJK6XRZSDR9WE4CUIJHXBINVN7';
 
 
 /** 
