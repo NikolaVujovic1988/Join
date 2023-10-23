@@ -34,9 +34,11 @@ function generateTask(task, taskSection, topicName, topicColor, progress, subtas
 function getAddTaskHTML() {
     return `
     <div id="popupContainer" class="popup-container p-relative" onclick="stopPropagation(event); closeLogoutPopup()">
-        <img id="popupContainerBackButton" class="back-btn-addTask-popup pointer" src="../assets/icons/plus_blue.png" onclick="closePopupWindow()">
         <div class="spanMainpage d-none">Kanban Project Management Tool</div>
-        <h2>Add Task</h2>
+        <div class="popup-headline">
+            <h2>Add Task</h2>
+            <img id="popupContainerBackButton" class="back-btn-addTask-popup pointer" src="../assets/icons/plus_blue.png" onclick="closePopupWindow()">
+        </div>
         <form class="addTask-form d-flex" onsubmit="getInputsFromForm(); return false" onclick="closeAllDropdowns()">
             <div class="addTask-form-left-container">
                 <div>
@@ -75,9 +77,8 @@ function getAddTaskHTML() {
             <div class="addTask-form-right-container">
                 <div>
                     <h4 class="addTask-form-headlines">Due date</h4>
-                    <div class="p-relative" onclick="showCurrentDate('addTaskDate')">
-                        <img class="calendar-icon pointer" src="../assets/icons/calendar.png"></img>
-                        <input type="text" class="text-cursor" id="addTaskDate" placeholder="dd/mm/yyyy" required>
+                    <div class="">
+                        <input type="date" class="text-cursor" id="addTaskDate" required>
                     </div>
                 </div>
                 <div>

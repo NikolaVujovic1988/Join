@@ -32,6 +32,21 @@ function showAddTaskWindow() {
     addTaskSideCreateContact = true;
 
     inAddTaskPopup = true;
+    setInitialDate();
+    // return yourHTMLString;
+}
+
+/**
+ * Sets the initial date for the 'addTaskDate' input field.
+ * The current date is used as the default value, and it also 
+ * establishes the earliest selectable date to prevent selection 
+ * of past dates.
+ */
+function setInitialDate() {
+    const currentDate = new Date().toISOString().split('T')[0];
+    const dateInput = document.getElementById('addTaskDate');
+    dateInput.value = currentDate;
+    dateInput.min = currentDate;
 }
 
 

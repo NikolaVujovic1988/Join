@@ -390,6 +390,7 @@
         gap: 40px;
         overflow: auto;
         padding-bottom: 10px;
+        flex-wrap: wrap;
     }
 
     .task-box {
@@ -439,58 +440,10 @@
     .edit-task-form {
         width: 100%;
     }
-}
 
-@media (max-width: 600px) {
-    .edit-and-delete-box {
-        flex-direction: column;
-        bottom: 40px;
-        right: 35px;
-    }
-
-    .delete-btn {
-        border-radius: 10px;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-
-    .edit-btn {
-        border-radius: 10px;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-    }
-
-    .prio-small {
-        font-size: 0.9em !important;
-    }
-
-    .prio-img-small {
-        height: 10px !important;
-        width: 14px !important;
-    }
-
-    .ok-btn {
-        right: 35px;
-    }
-
-    .board-search-box input {
-        width: 180px;
-    }
 
     .drag-drop-area {
-        flex-direction: column;
-        overflow: hidden;
-    }
-
-    .popup-prio {
-        font-size: 0.8em;
-        padding: 5px;
-        padding-left: 8px;
-        padding-right: 8px;
-    }
-
-    .m-b-45 {
-        margin-bottom: 0;
+        overflow: auto;
     }
 
     .switch-category {
@@ -523,6 +476,58 @@
 
     .switch-category img:hover {
         filter: brightness(260%) contrast(280%) saturate(130%);
+    }
+}
+
+@media (max-width: 600px) {
+    .edit-and-delete-box {
+        flex-direction: column;
+        bottom: 40px;
+        right: 35px;
+    }
+
+    .delete-btn {
+        border-radius: 10px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .edit-btn {
+        border-radius: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    .prio-small {
+        font-size: 0.9em !important;
+    }
+
+    .prio-img-small {
+        height: 10px !important;
+        width: 14px !important;
+    }
+
+    .drag-drop-area {
+        flex-wrap: nowrap;
+    }
+
+    .ok-btn {
+        right: 35px;
+    }
+
+    .board-search-box input {
+        width: 180px;
+    }
+
+    .popup-prio {
+        font-size: 0.8em;
+        padding: 5px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .m-b-45 {
+        margin-bottom: 0;
     }
 }
 
