@@ -115,11 +115,11 @@ function openDetailedContactCard(i) {
  * removes and adds buttons at a certain resolution
  */
 function adjustStyleForResponsiveView() {
-    document.getElementById('createContactBtn').classList.add("d-none");
-    document.getElementById('contactCard').classList.add('d-flex');
-    document.getElementById('closeContactCardBtn').classList.add('d-flex');
-    document.getElementById('editContact').classList.add('d-none');
-    document.getElementById('editContactBtnBox').classList.remove('d-none');
+    document.getElementById('createContactBtn')?.classList.add("d-none");
+    document.getElementById('contactCard')?.classList.add('d-flex');
+    document.getElementById('closeContactCardBtn')?.classList.add('d-flex');
+    document.getElementById('editContact')?.classList.add('d-none');
+    document.getElementById('editContactBtnBox')?.classList.remove('d-none');
 }
 
 
@@ -128,10 +128,10 @@ function adjustStyleForResponsiveView() {
  */
 function closeContactCard() {
     if (mediaQuery.matches) {
-        document.getElementById('createContactBtn').classList.remove("d-none");
-        document.getElementById('contactCard').classList.remove('d-flex');
-        document.getElementById('closeContactCardBtn').classList.remove('d-flex');
-        document.getElementById('editContactBtnBox').classList.add('d-none');
+        document.getElementById('createContactBtn')?.classList.remove("d-none");
+        document.getElementById('contactCard')?.classList.remove('d-flex');
+        document.getElementById('closeContactCardBtn')?.classList.remove('d-flex');
+        document.getElementById('editContactBtnBox')?.classList.add('d-none');
     }
     onContactCard = false;
     removeAllHighlightsFromContacts();
@@ -145,7 +145,7 @@ function closeContactCard() {
 function highlightSelectedContact(i) {
     removeAllHighlightsFromContacts();
     let currentContact = document.getElementById(`contactBox${i}`);
-    currentContact.classList.add('bg-highlight');
+    currentContact?.classList.add('bg-highlight');
 }
 
 
@@ -156,7 +156,7 @@ function removeAllHighlightsFromContacts() {
     let contactBoxes = document.getElementsByClassName('contact-box');
     for (let i = 0; i < contactBoxes.length; i++) {
         let element = contactBoxes[i];
-        element.classList.remove('bg-highlight');
+        element?.classList.remove('bg-highlight');
     }
 }
 

@@ -46,8 +46,8 @@ function showMainpage() {
 function changeSite(id) {
     let pageToShow = document.getElementById(id);
     let currentShownPage = document.getElementById(currentPage);
-    currentShownPage.classList.add('d-none');
-    pageToShow.classList.remove('d-none');
+    currentShownPage?.classList.add('d-none');
+    pageToShow?.classList.remove('d-none');
     previousPage = currentPage;
     currentPage = id;
     currentAssignedClients = [];
@@ -75,11 +75,11 @@ function changeToAddTaskSite(id) {
  */
 function showLogoutPopup() {
     let popup = document.getElementById('logoutPopup');
-    if (popup.classList.contains('d-none')) {
-        popup.classList.remove('d-none');
+    if (popup?.classList.contains('d-none')) {
+        popup?.classList.remove('d-none');
         if (mediaQuery.matches) {
             let newContactBtn = document.getElementById('createContactBtn');
-            newContactBtn.classList.add('d-none');
+            newContactBtn?.classList.add('d-none');
         }
     } else {
         closeLogoutPopup();
@@ -92,10 +92,10 @@ function showLogoutPopup() {
  */
 function closeLogoutPopup() {
     let popup = document.getElementById('logoutPopup');
-    popup.classList.add('d-none');
+    popup?.classList.add('d-none');
     if (mediaQuery.matches && !onContactCard) {
         let newContactBtn = document.getElementById('createContactBtn');
-        newContactBtn.classList.remove('d-none');
+        newContactBtn?.classList.remove('d-none');
     }
 }
 
@@ -112,7 +112,7 @@ function stopPropagation(event) {
  * adds background to sidebar element you go to (only for the sites you cant go back)
  */
 function addBackgroundColorForMainPages(id) {
-    document.getElementById(`${id}`).classList.add('backgroundSidebar');
+    document.getElementById(`${id}`)?.classList.add('backgroundSidebar');
     previousBackground = id;
 }
 
@@ -121,7 +121,7 @@ function addBackgroundColorForMainPages(id) {
  * adds background to sidebar element you go to (for the sites you can go back)
  */
 function addBackgroundColorForSpecialPages(id) {
-    document.getElementById(`${id}`).classList.add('backgroundSidebar');
+    document.getElementById(`${id}`)?.classList.add('backgroundSidebar');
 }
 
 
@@ -131,7 +131,7 @@ function addBackgroundColorForSpecialPages(id) {
 function deleteBackgroundColors() {
     const background = document.querySelectorAll('.bgdHover');
     for (let i = 0; i < background.length; i++) {
-        background[i].classList.remove('backgroundSidebar');
+        background[i]?.classList.remove('backgroundSidebar');
     }
 }
 
@@ -184,40 +184,64 @@ function clearSearchField() {
 
 
 /**
- * fades in a popup with dark background, inserts the content
- * @param {*template} - content to show
+ * Fetches the DOM element by its ID.
+ * @param {string} id - ID of the DOM element.
+ * @returns {HTMLElement|null} - Returns the DOM element or null if not found.
  */
-function fadeInPopupWindow(template) {
-    let popupWindow = document.getElementById('popupWindow');
-    popupWindow.classList.remove('d-none');
-    popupWindow.classList.remove('light');
-    popupWindow.classList.add('dark');
-    popupWindow.innerHTML = template;
+function getElem(id) {
+    return document.getElementById(id);
 }
 
 
 /**
- * slides in content into a popup window
- * @param {template} template - content to show
- * @param {string} id - ID of the element to slide in the content
+ * Toggles classes for a DOM element.
+ * @param {HTMLElement} elem - The target DOM element.
+ * @param {string[]} addClasses - Array of classes to add.
+ * @param {string[]} removeClasses - Array of classes to remove.
+ */
+function toggleClasses(elem, addClasses, removeClasses) {
+    if (!elem) return;
+    addClasses.forEach(cls => elem.classList.add(cls));
+    removeClasses.forEach(cls => elem.classList.remove(cls));
+}
+
+/**
+ * Updates the innerHTML content of a DOM element.
+ * @param {HTMLElement} elem - The target DOM element.
+ * @param {string} content - Content to set as innerHTML.
+ */
+function updateContent(elem, content) {
+    if (elem) elem.innerHTML = content;
+}
+
+/**
+ * Fades in a popup window and inserts the provided content.
+ * @param {string} template - Content to be displayed in the popup.
+ */
+function fadeInPopupWindow(template) {
+    let popupWindow = getElem('popupWindow');
+    toggleClasses(popupWindow, ['dark'], ['d-none', 'light']);
+    updateContent(popupWindow, template);
+}
+
+/**
+ * Slides in the content into a popup window.
+ * @param {string} template - Content to be displayed in the popup.
+ * @param {string} id - ID of the element where content should slide in.
  */
 function slideInContent(template, id) {
     fadeInPopupWindow(template);
-    let content = document.getElementById(`${id}`);
-    content.classList.remove('move-out');
-    content.classList.add('move-in');
+    toggleClasses(getElem(id), ['move-in'], ['move-out']);
 }
 
 /**
- * if the popup is a fading one it closes it by fading out, otherwise by sliding out
+ * Closes the popup window. Uses different methods based on the current popup style.
  */
 function closePopupWindow() {
+    let popupWindow = getElem('popupWindow');
     if (currentPopupStyle == 'fade') {
-        let popupWindow = document.getElementById('popupWindow');
-        popupWindow.classList.add('light');
-        popupWindow.classList.remove('dark');
-        popupWindow.innerHTML = '';
-        setTimeout(deleteDarkBackground, 325, popupWindow);
+        toggleClasses(popupWindow, ['light'], ['dark']);
+        setTimeout(() => deleteContent(popupWindow), 325);
     } else {
         slideOutContent();
         inAddTaskPopup = false;
@@ -229,70 +253,62 @@ function closePopupWindow() {
     currentAssignment = 'toDo';
 }
 
-
 /**
- * slides out the content from the popup window
+ * Slides out the content from a popup window.
  */
 function slideOutContent() {
-    let popupWindow = document.getElementById('popupWindow');
-    popupWindow.classList.add('light');
-    popupWindow.classList.remove('dark');
-    let content = document.getElementById(`${popupContentID}`);
-    content.classList.remove('move-in');
-    content.classList.add('move-out');
-    setTimeout(deleteContent, 325, popupWindow);
+    let popupWindow = getElem('popupWindow');
+    toggleClasses(popupWindow, ['light'], ['dark']);
+    toggleClasses(getElem(popupContentID), ['move-out'], ['move-in']);
+    setTimeout(() => deleteContent(popupWindow), 325);
 }
 
-
 /**
- * deletes the dark background
+ * Removes the dark background class from a popup window.
+ * @param {HTMLElement} popupWindow - Target popup window element.
  */
 function deleteDarkBackground(popupWindow) {
-    popupWindow.classList.add('d-none');
+    toggleClasses(popupWindow, ['d-none'], []);
 }
 
-
 /**
- * deletes the content of the popup window
- * @param {HTMLElement} popupWindow - popup window element
+ * Clears the content of a popup window and removes the dark background.
+ * @param {HTMLElement} popupWindow - Target popup window element.
  */
 function deleteContent(popupWindow) {
-    popupWindow.innerHTML = '';
+    updateContent(popupWindow, '');
     deleteDarkBackground(popupWindow);
 }
 
+/**
+ * Shows a banner with the specified text and transitions.
+ * @param {string} bannerId - ID of the banner element.
+ * @param {string} text - Message to be displayed in the banner.
+ * @param {string[]} inClasses - Array of classes to apply initially.
+ * @param {string[]} outClasses - Array of classes to apply after a timeout.
+ * @param {number} duration - Duration in milliseconds before switching classes.
+ */
+function showBanner(bannerId, text, inClasses, outClasses, duration) {
+    let banner = getElem(bannerId);
+    updateContent(banner, text);
+    toggleClasses(banner, inClasses, outClasses);
+    setTimeout(() => toggleClasses(banner, outClasses, inClasses), duration);
+    setTimeout(() => toggleClasses(banner, ['d-none'], []), duration + 500);
+}
 
 /**
- * shows feedback banner after done action
+ * Displays a success banner with a message.
+ * @param {string} text - Message to be displayed in the banner.
  */
 function showSuccessBanner(text) {
-    let banner = document.getElementById('successBanner');
-    banner.innerHTML = `${text}`;
-    banner.classList.remove('move-down', 'd-none');
-    banner.classList.add('move-up');
-    setTimeout(function () {
-        banner.classList.remove('move-up');
-        banner.classList.add('move-down');
-    }, 1500);
-    setTimeout(function () {
-        banner.classList.add('d-none');
-    }, 2000);
+    showBanner('successBanner', text, ['move-up'], ['move-down', 'd-none'], 1500);
 }
 
 
 /**
- * shows alert banner when something isnt working
+ * Displays a failure banner with a message.
+ * @param {string} text - Message to be displayed in the banner.
  */
 function showFailureBanner(text) {
-    let banner = document.getElementById('failureBanner');
-    banner.innerHTML = `${text}`;
-    banner.classList.remove('light-banner', 'd-none');
-    banner.classList.add('dark-banner');
-    setTimeout(function () {
-        banner.classList.remove('dark-banner');
-        banner.classList.add('light-banner');
-    }, 2000);
-    setTimeout(function () {
-        banner.classList.add('d-none');
-    }, 2400);
+    showBanner('failureBanner', text, ['dark-banner'], ['light-banner', 'd-none'], 2000);
 }
