@@ -99,7 +99,7 @@ function getAddTaskHTML() {
                     </div>
                 </div>
                 <div id="addSubtasksSection">
-                    <h4 class="addTask-form-headlines">Assigned to</h4>
+                    <h4 class="addTask-form-headlines">Subtask</h4>
                     <div id="emptyInputPopupPrio" class="p-absolute pos-1 d-none">
                         <div class="exclamation-box f-center">
                             <img src="../assets/icons/exclamation.png" class="exclamation">
@@ -269,7 +269,7 @@ function getSubtaskBoxHTML(i, text, checkmark) {
 function createNewSubtask() {
     let container = document.getElementById('addSubtasksSection');
     container.innerHTML = `
-        <h4 class="addTask-form-headlines">Assigned to</h4>
+        <h4 class="addTask-form-headlines">Subtask</h4>
         <div class="dropdown pointer grey-text d-flex a-i-center padding-r-15">
             <input type="text" id="subtaskInput" maxlength="32" class="new-cat-input" onkeydown="addSubtaskOnEnter()">
             <div class="create-cat-icon-box d-flex a-i-center pointer">
@@ -289,7 +289,7 @@ function createNewSubtask() {
 function clearSubtaskSection() {
     let container = document.getElementById('addSubtasksSection');
     container.innerHTML = `
-        <h4 class="addTask-form-headlines">Assigned to</h4>
+        <h4 class="addTask-form-headlines">Subtask</h4>
         <div class="p-relative" onclick="createNewSubtask()">
             <input type="text" id="subtaskInput" placeholder="Add new subtask">
             <img class="subtask-plus-icon pointer" src="../assets/icons/plus_blue.png"></img>

@@ -48,6 +48,7 @@ function setUsernameToGreet() {
  * displays the number of tasks in the summary
  */
 function getTaskNumbers() {
+    // tasks.splice(7, 6);
     showTaskNumbers('inProgress', 'tasksInProgressCount');
     showTaskNumbers('awaitFeedback', 'tasksAwaitingFeedbackCount');
     showTaskNumbers('toDo', 'tasksToDoCount');
